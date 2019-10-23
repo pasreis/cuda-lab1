@@ -18,6 +18,8 @@
  */
 
 #include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 #include <iostream>
 
 // For the CUDA runtime routines (prefixed with "cuda_")
@@ -53,12 +55,31 @@ main(int argc, char** argv)
 
     // Print the vector length to be used, and compute its size
     unsigned long long numElements = 2<<20	; // <------- size!
+    int threadsPerBlock = 256, option;
 
+    while ((option = getopt(argc, argv, "n:t:")) != -1) {
+    	switch (option) {
+    		case 'n':
+    			numElements = (unsigned long long) atoi(optarg);
+    			break;
+    		case 't':
+    			threadsPerBlock = (int) atoi(optarg);
+    			break;
+    		default:
+    			printf("Error!\n");
+    			exit(0);
+    	}
+    }
     // Check  arguments passed: if any is passed, then use it as the value for numElements
-	if (argc > 1) {
-		numElements = (unsigned long long) atoi(argv[1]);
-	}
+//	if (argc > 1) {
+//
+//	}
 
+    // Launch the Vector Add CUDA Kernel HERE!!!
+
+//     if (argc > 2) {
+//        threadsPerBlock  = (unsigned long long) atoi(argv[2]);
+//    }
     size_t size = numElements * sizeof(float);
 
     cudaDeviceProp prop;
@@ -162,11 +183,6 @@ main(int argc, char** argv)
 //        exit(EXIT_FAILURE);
 //    }
 
-    // Launch the Vector Add CUDA Kernel HERE!!!
-    int threadsPerBlock = 256;
-     if (argc > 2) {
-        numElements = (unsigned long long) atoi(argv[2]);
-    }
 
 	int blocksPerGrid =(numElements + threadsPerBlock - 1) / threadsPerBlock;
     printf("CUDA kernel launch with %d blocks of %d threads\n", blocksPerGrid, threadsPerBlock);
