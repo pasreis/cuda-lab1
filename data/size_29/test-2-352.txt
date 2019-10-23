@@ -1,0 +1,16 @@
+==7341== NVPROF is profiling process 7341, command: ./vector-add -n 1073741824 -t 352
+Memory exceeded!
+==7341== Profiling application: ./vector-add -n 1073741824 -t 352
+==7341== Profiling result:
+No kernels were profiled.
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+      API calls:   43.94%  487.42us         1  487.42us  487.42us  487.42us  cuDeviceTotalMem
+                   28.67%  317.99us        96  3.3120us     838ns  106.51us  cuDeviceGetAttribute
+                   20.69%  229.50us         1  229.50us  229.50us  229.50us  cudaGetDeviceProperties
+                    4.62%  51.194us         1  51.194us  51.194us  51.194us  cuDeviceGetName
+                    0.91%  10.057us         1  10.057us  10.057us  10.057us  cuDeviceGetPCIBusId
+                    0.43%  4.8180us         3  1.6060us  1.0470us  2.3040us  cuDeviceGetCount
+                    0.38%  4.1910us         1  4.1910us  4.1910us  4.1910us  cudaGetDeviceCount
+                    0.26%  2.8630us         2  1.4310us  1.1170us  1.7460us  cuDeviceGet
+                    0.11%  1.2570us         1  1.2570us  1.2570us  1.2570us  cuDeviceGetUuid
+======== Error: Application returned non-zero code 1

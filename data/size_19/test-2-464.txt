@@ -1,0 +1,30 @@
+==35988== NVPROF is profiling process 35988, command: ./vector-add -n 1048576 -t 464
+[Vector addition of 1048576 elements]
+CUDA kernel launch with 2260 blocks of 464 threads
+Test PASSED
+Done
+==35988== Profiling application: ./vector-add -n 1048576 -t 464
+==35988== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  5.0687ms         1  5.0687ms  5.0687ms  5.0687ms  vectorAdd(float const *, float const *, float*, int)
+      API calls:   95.58%  306.71ms         3  102.24ms  15.993us  306.66ms  cudaMallocManaged
+                    2.15%  6.9062ms         1  6.9062ms  6.9062ms  6.9062ms  cuDeviceGetName
+                    1.58%  5.0726ms         1  5.0726ms  5.0726ms  5.0726ms  cudaDeviceSynchronize
+                    0.34%  1.1068ms         3  368.95us  342.08us  404.31us  cudaFree
+                    0.16%  499.51us         1  499.51us  499.51us  499.51us  cuDeviceTotalMem
+                    0.10%  304.99us        96  3.1770us     838ns  93.866us  cuDeviceGetAttribute
+                    0.06%  204.71us         1  204.71us  204.71us  204.71us  cudaGetDeviceProperties
+                    0.02%  72.635us         1  72.635us  72.635us  72.635us  cudaLaunchKernel
+                    0.00%  10.337us         1  10.337us  10.337us  10.337us  cuDeviceGetPCIBusId
+                    0.00%  4.0500us         3  1.3500us     978ns  1.8150us  cuDeviceGetCount
+                    0.00%  3.1430us         1  3.1430us  3.1430us  3.1430us  cudaGetLastError
+                    0.00%  2.6540us         2  1.3270us     978ns  1.6760us  cuDeviceGet
+                    0.00%  1.0480us         1  1.0480us  1.0480us  1.0480us  cuDeviceGetUuid
+
+==35988== Unified Memory profiling result:
+Device "GeForce GTX 1060 6GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+      70  117.03KB  4.0000KB  0.9805MB  8.000000MB  742.1440us  Host To Device
+      72  170.67KB  4.0000KB  0.9961MB  12.00000MB  1.003904ms  Device To Host
+      34         -         -         -           -  4.959776ms  Gpu page fault groups
+Total CPU Page faults: 60

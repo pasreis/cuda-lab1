@@ -1,0 +1,30 @@
+==28623== NVPROF is profiling process 28623, command: ./vector-add -n 4096 -t 16
+[Vector addition of 4096 elements]
+CUDA kernel launch with 256 blocks of 16 threads
+Test PASSED
+Done
+==28623== Profiling application: ./vector-add -n 4096 -t 16
+==28623== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  741.57us         1  741.57us  741.57us  741.57us  vectorAdd(float const *, float const *, float*, int)
+      API calls:   98.48%  315.52ms         3  105.17ms  12.781us  315.48ms  cudaMallocManaged
+                    0.89%  2.8523ms         1  2.8523ms  2.8523ms  2.8523ms  cuDeviceGetName
+                    0.23%  745.49us         1  745.49us  745.49us  745.49us  cudaDeviceSynchronize
+                    0.16%  516.27us         1  516.27us  516.27us  516.27us  cuDeviceTotalMem
+                    0.10%  319.11us        96  3.3240us     838ns  106.37us  cuDeviceGetAttribute
+                    0.07%  217.91us         1  217.91us  217.91us  217.91us  cudaGetDeviceProperties
+                    0.04%  132.56us         3  44.186us  14.667us  78.642us  cudaFree
+                    0.02%  72.007us         1  72.007us  72.007us  72.007us  cudaLaunchKernel
+                    0.00%  11.454us         1  11.454us  11.454us  11.454us  cuDeviceGetPCIBusId
+                    0.00%  4.9600us         3  1.6530us  1.1180us  2.7240us  cuDeviceGetCount
+                    0.00%  3.1430us         1  3.1430us  3.1430us  3.1430us  cudaGetLastError
+                    0.00%  2.7240us         2  1.3620us  1.1180us  1.6060us  cuDeviceGet
+                    0.00%  1.2570us         1  1.2570us  1.2570us  1.2570us  cuDeviceGetUuid
+
+==28623== Unified Memory profiling result:
+Device "GeForce GTX 1060 6GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+       2  32.000KB  16.000KB  48.000KB  64.00000KB  6.944000us  Host To Device
+       2  32.000KB  4.0000KB  60.000KB  64.00000KB  6.240000us  Device To Host
+       1         -         -         -           -  736.1600us  Gpu page fault groups
+Total CPU Page faults: 2
