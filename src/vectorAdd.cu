@@ -82,13 +82,33 @@ main(int argc, char** argv)
 //    }
     size_t size = numElements * sizeof(float);
 
-    cudaDeviceProp prop;
-    cudaGetDeviceProperties(&prop, 0);
+	cudaDeviceProp prop;
+	int numDevices = 0;
 
-    if (size > prop.totalGlobalMem){
-    	printf("Memory exceeded!\n");
-    	exit(1);
-    }
+	err = cudaGetDeviceCount(&numDevices);
+
+	if (err != cudaSuccess) {
+		fprintf(stderr, "Failed to query the number of devices!\n");
+		exit(EXIT_FAILURE);
+	}
+
+	int totalMem = 0;
+
+	for (int i = 0; i < numDevices; i++) {
+		err = cudaGetDeviceProperties(&prop, i);
+
+		if (err != cudaSuccess) {
+			fprintf(stderr, "Failed to query the device properties!\n");
+			exit(EXIT_FAILURE);
+		}
+
+		totalMem += prop.totalGlobalMem;
+	}
+
+	if (size > totalMem){
+		printf("Memory exceeded!\n");
+		exit(1);
+	}
 
     printf("[Vector addition of %d elements]\n", numElements);
 
