@@ -2,7 +2,7 @@
 Introduction to CUDA lab 1 report with source code used
 
 # Authors
-Pedro Alexandre Simões dos Reis @pasreis
+Pedro Alexandre Simões dos Reis @pasreis</br>
 Iñaki Urrutia Sánchez @ikkani<br/>
 
 # How to Run
